@@ -1,8 +1,8 @@
-# Ansible Role: MySQL
+# Ansible Role: MySQL, MariaDB or Percona
 
-[![Build Status](https://travis-ci.org/geerlingguy/ansible-role-mysql.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-role-mysql)
+Installs and configures MySQL or MariaDB or Percona server on RHEL/CentOS (and sometimes Debian/Ubuntu) servers.
 
-Installs and configures MySQL or MariaDB server on RHEL/CentOS or Debian/Ubuntu servers.
+Updated fork to accomodate Percona (Work In Progress).
 
 ## Requirements
 
@@ -10,7 +10,7 @@ No special requirements; note that this role requires root access, so either run
 
     - hosts: database
       roles:
-        - role: geerlingguy.mysql
+        - role: afrinic.mysql-variant
           become: yes
 
 ## Role Variables
@@ -159,7 +159,9 @@ On Ubuntu, the package names are named differently, so the `mysql_package` varia
 
 ## Dependencies
 
-None.
+Optionally depend on `afrinic.repo-percona` role to set up the yum repository for installing Percona on RHEL/CentOS.
+
+None mandatory.
 
 ## Example Playbook
 
@@ -168,7 +170,7 @@ None.
       vars_files:
         - vars/main.yml
       roles:
-        - { role: geerlingguy.mysql }
+        - { role: afrinic.mysql-variant }
 
 *Inside `vars/main.yml`*:
 
@@ -185,8 +187,10 @@ None.
 
 ## License
 
-MIT / BSD
+MIT
 
 ## Author Information
 
-This role was created in 2014 by [Jeff Geerling](https://www.jeffgeerling.com/), author of [Ansible for DevOps](https://www.ansiblefordevops.com/).
+This role was (initially) created in 2014 by [Jeff Geerling](https://www.jeffgeerling.com/), author of [Ansible for DevOps](https://www.ansiblefordevops.com/).
+
+This is an updated fork, modified by Daniel Shaw, for use at AFRINIC.
