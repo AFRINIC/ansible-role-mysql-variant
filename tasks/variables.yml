@@ -17,6 +17,16 @@
     mysql_packages: "{{ __mysql_packages | list }}"
   when: mysql_packages is not defined
 
+- name: Define mysql_xtra_packages (yum).
+  set_fact:
+    mysql_xtra_packages: "{{ __mysql_xtra_packages | list }}"
+  when: mysql_xtra_packages is not defined and ansible_os_family == "RedHat"
+
+- name: Define mysql_package_conflicts (yum).
+  set_fact:
+    mysql_package_conflicts: "{{ __mysql_package_conflicts | list }}"
+  when: mysql_package_conflicts is not defined and ansible_os_family == "RedHat"
+
 - name: Define mysql_daemon.
   set_fact:
     mysql_daemon: "{{ __mysql_daemon }}"
