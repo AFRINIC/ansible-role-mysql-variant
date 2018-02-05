@@ -2,7 +2,7 @@
 - name: Ensure conflicting MySQL packages are NOT installed.
   yum: "name={{ item }} state=removed enablerepo={{ mysql_enablerepo }}"
   with_items: "{{ mysql_package_conflicts }}"
-  register: rh_mysql_install_packages
+  register: rh_mysql_remove_packages
 
 - name: Ensure MySQL (base) packages are installed.
   yum: "name={{ item }} state=installed enablerepo={{ mysql_enablerepo }}"
@@ -12,4 +12,4 @@
 - name: Ensure MySQL extra support packages are installed.
   yum: "name={{ item }} state=installed enablerepo={{ mysql_enablerepo }}"
   with_items: "{{ mysql_xtra_packages }}"
-  register: rh_mysql_install_xtra_packages
+  register: rh_mysql_xtra_packages
